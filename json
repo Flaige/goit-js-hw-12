@@ -1,4 +1,4 @@
 [
-  { "name": "John", "age": 30 },
-  { "name": "Jane", "age": 25 }
+  { "category": "Programming", "type": "single", "joke": "Why do programmers prefer dark mode? Because light attracts bugs." },
+  { "category": "Misc", "type": "twopart", "setup": "Why did the scarecrow become a successful neurosurgeon?", "delivery": "He was outstanding in his field." }
 ]
