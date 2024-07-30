@@ -1,0 +1,36 @@
+config:
+  target: "https://v2.jokeapi.dev"
+  phases:
+    - duration: 60
+      arrivalRate: 10
+      name: "Warm up"
+    - duration: 120
+      arrivalRate: 20
+      name: "Load Test"
+  payload:
+    path: "jokes.json"
+    fields:
+      - "category"
+      - "type"
+      - "joke"
+      - "setup"
+      - "delivery"
+  defaults:
+    headers:
+      content-type: "application/json"
+scenarios:
+  - flow:
+      - get:
+          url: "/joke/Any"
+      - post:
+          url: "/submit"
+          json:
+            category: "{{ category }}"
+            type: "{{ type }}"
+            joke: "{{ joke }}"
+            setup: "{{ setup }}"
+            delivery: "{{ delivery }}"
+ensure:
+  - "p95(response_time) < 500"
+  - "mean(response_time) < 300"
+  - "max(response_time) < 1000"
